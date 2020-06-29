@@ -71,6 +71,7 @@ http.createServer(async (req, res) => {
             stdio: 'inherit',
         })
 
+        console.log('deploy success')
     }
     res.end('ok')
 }).listen(3000, () => {
