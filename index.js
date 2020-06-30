@@ -49,17 +49,17 @@ http.createServer(async (req, res) => {
         fs.copyFileSync(path.resolve(__dirname,`./.dockerignore`), path.resolve(projectDir, './.dockerignore'))
 
 
-        // // 创建 docker 镜像
-        // execSync(`docker build -t ${data.repository.name}-image:latest .`, {
-        //     stdio: 'inherit',
-        //     cwd: projectDir
-        // })
-
-        // // 创建 docker 镜像
-        execSync(`docker pull yeyan1996/docker-test-image:latest`, {
+        // 创建 docker 镜像
+        execSync(`docker build -t ${data.repository.name}-image:latest .`, {
             stdio: 'inherit',
             cwd: projectDir
         })
+
+        // // 拉取 docker 镜像
+        // execSync(`docker pull yeyan1996/docker-test-image:latest`, {
+        //     stdio: 'inherit',
+        //     cwd: projectDir
+        // })
 
         // 销毁 docker 容器
         execSync(`docker ps -a -f "name=^${data.repository.name}-container" --format="{{.Names}}" | xargs -r docker stop | xargs -r docker rm`, {
