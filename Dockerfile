@@ -1,5 +1,5 @@
 # build stage
-FROM node:latest as build-stage
+FROM node:lts-alpine as build-stage
 WORKDIR /app
 COPY package*.json ./
 RUN echo 'npm install...'
@@ -9,7 +9,7 @@ RUN echo 'npm build...'
 RUN npm run build
 
 # production stage
-FROM nginx:latest as production-stage
+FROM nginx:stable-alpine as production-stage
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
