@@ -2,10 +2,8 @@
 FROM node:lts-alpine as build-stage
 WORKDIR /app
 COPY package*.json ./
-RUN echo 'npm install...'
 RUN npm install
 COPY . .
-RUN echo 'npm build...'
 RUN npm run build
 
 # production stage
