@@ -59,7 +59,7 @@ http.createServer(async (req, res) => {
         })
 
         console.log('recreate docker container...')
-        execSync(`sudo docker ps -a -f "name=^${data.repository.name}-container" --format="{{.Names}}" | xargs -r docker stop | xargs -r docker rm`, {
+        execSync(`sudo docker ps -a -f "name=^${data.repository.name}-container" --format="{{.Names}}" | xargs -r sudu docker stop | xargs -r sudu docker rm`, {
             stdio: 'inherit',
         })
         execSync(`sudo docker run -d -p 8888:80 --name ${data.repository.name}-container  ${data.repository.name}-image:latest`, {
